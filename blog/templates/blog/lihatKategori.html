@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block namaPage %}
+    DAIRIIT | BLOG
+{% endblock namaPage %}
+
+
+{% block judulPage %}
+    <div class="jumbotron jumbotron-fluid pt-1 pb-1">
+        <div class="container">
+            <h1 class="display-2 font-weight-bold text-shadow">{{judul}}</h1>
+            <p class="lead">{{subjudul}}</p>
+        </div>
+    </div>
+    <ul class="nav justify-content-center mb-4">
+        {% for kategori in categories %}
+            <ul class="nav-item">
+                <a class='nav-link' href="{% url 'blog:tampilByKategori' kategoriInput=kategori.category %}">{{kategori.category}}</a>
+            </ul>
+        {% endfor %}
+    </ul>    
+{% endblock judulPage %}
+
+
+{% block konten %}
+    
+    {% for post in postByCategory %}
+
+        <div class="card">
+            <div class="card-body border border-dark shadow">
+              <h5 class="card-title display-4">{{post.judul}}</h5>
+              <p class="card-text"><b>{{post.update}}</b></p>
+              <p class="card-text">{{post.body|truncatechars:50}}</p>
+              <a href="{% url 'blog:tampilPost' slugInput=post.slug %}" class="btn btn-primary">Lanjutkan membaca</a>
+            </div>
+        </div>
+    {% endfor %}
+        
+{% endblock konten %}
+    

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block namaPage %}
+    DAIRIIT | {{heading}}
+{% endblock namaPage %}
+
+
+{% block judulPage %}
+    <h1 class="display-3">{{heading}}</h1>        
+{% endblock judulPage %}
+
+
+{% block konten %}
+    <form method="post" class="mt-5">
+        {% csrf_token %}            
+        {% for component in form_pendaftaran %}
+            
+            {% if component == form_pendaftaran.gender %}
+                <div class="form-group font-weight-bold">
+                    {{form_pendaftaran.gender.label_tag}}
+                    {% for attribut in form_pendaftaran.gender %}
+                        <div class="form-check">
+                            {{attribut.tag}}
+                            {{attribut.choice_label}}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% elif component == form_pendaftaran.agree %}
+                <div class="form-check font-weight-bold">
+                    {{component}}
+                    {{component.label}}
+                </div>    
+            {% else %}
+                <div class="form-group font-weight-bold">
+                    {{component.label_tag}}
+                    {{component}}
+                </div>
+            {% endif %}
+                
+        {% endfor %}
+        <br>
+        <button type="submit">kirim</button>
+    </form>
+
+    <h3>{{berhasil}}</h3>
+    <h5>{{nama}}</h5>
+    <h5>{{alamat}}</h5>
+{% endblock konten %}
+    

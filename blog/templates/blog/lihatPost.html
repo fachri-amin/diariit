@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block namaPage %}
+    DIARIIT | Post
+{% endblock namaPage %}
+    
+
+{% block judulPage %}
+    <h1>{{tampilkan.judul}}</h1>
+    <h3>{{tampilkan.update}}</h3>
+    <p><i>{{tampilkan.category}}</i></p>
+{% endblock judulPage %}
+    
+
+{% block konten %}
+    <p>{{tampilkan.body}}</p>
+{% endblock konten %}
+    
